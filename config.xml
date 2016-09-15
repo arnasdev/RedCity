@@ -1,0 +1,64 @@
+<widget xmlns 		= "http://www.w3.org/ns/widgets"
+        xmlns:gap 	= "http://phonegap.com/ns/1.0"
+        id 			= "ladstudios.bigknight"
+		version 	= "1.0.0">
+
+	<name>Bit Knight</name>
+	<description>A sidescrolling game</description>
+	<author email="cibulskisarnas@gmail.com" href="www.arnasc.com">Arnas Cibulskis</author>
+
+
+	<!-- Customize your app and platform with the preference element. -->
+	<preference name="DisallowOverscroll"      value="true" />         	<!-- ios: stop overscroll/bounce -->
+	<preference name="orientation"             value="landscape" />		<!-- all: default means both landscape and portrait are enabled -->
+	<preference name="fullscreen"              value="	true" />         	<!-- all: hides the status bar at the top of the screen -->
+	<preference name="exit-on-suspend"         value="true" />			<!-- ios: if set to true, app will terminate when home button is pressed -->
+
+
+	<!-- Define app icon for each platform. -->
+	<icon src="Images/icon.png" />
+
+
+	<!-- Define app splash screen for each platform. -->
+	<gap:splash src="Images/splash.png"		gap:platform="android" gap:qualifier="port-ldpi" />
+	<gap:splash src="Images/splash.png"		gap:platform="android" gap:qualifier="port-mdpi" />
+	<gap:splash src="Images/splash.png"		gap:platform="android" gap:qualifier="port-hdpi" />
+	<gap:splash src="Images/splash.png"		gap:platform="android" gap:qualifier="port-xhdpi" />
+	<gap:splash src="Images/splash.png"		gap:platform="blackberry" />
+	<gap:splash src="Images/splash.png"		gap:platform="ios"     width="320" height="480" />
+	<gap:splash src="Images/splash.png"		gap:platform="ios"     width="640" height="960" />
+	<gap:splash src="Images/splash.png"		gap:platform="ios"     width="640" height="1136" />
+	<gap:splash src="Images/splash.png"		gap:platform="ios"     width="768" height="1024" />
+	<gap:splash src="Images/splash.png"		gap:platform="ios"     width="1024" height="768" />
+	<gap:splash src="Images/splash.png"		gap:platform="winphone" />
+
+
+	<!-- Define access to external domains. -->
+	<access origin="*" />
+
+
+	<!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
+	<!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
+	<plugin name="cordova-plugin-whitelist" version="1" />
+	<allow-intent href="http://*/*" />
+	<allow-intent href="https://*/*" />
+	<allow-intent href="tel:*" />
+	<allow-intent href="sms:*" />
+	<allow-intent href="mailto:*" />
+	<allow-intent href="geo:*" />
+	<platform name="android">
+		<allow-intent href="market:*" />
+	</platform>
+	<platform name="ios">
+		<allow-intent href="itms:*" />
+		<allow-intent href="itms-apps:*" />
+	</platform>
+
+	<gap:plugin name="org.apache.cordova.vibration" />
+	<gap:plugin name="org.apache.cordova.splashscreen" />
+	
+	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
+		<false/>
+	</gap:config-file>
+</widget>
+
