@@ -38,17 +38,33 @@ var windowWidth;
 var windowHeight;
 	
 /**
+*	Objects
+**/
+	var gameBackground;
+	var gameBuilding_A;
+	var gameBuilding_B;
+	var gameBuilding_C;
+	var gameBuilding_D;
+	var gameBuilding_bank;
+	
+	
+/**
 *	Intervals
 **/
 
-var renderCanvasInterval = null;
+var renderCanvasInterval;
 	
 /**
 *	Images
 **/
 
 var building_1 = new Image();
+var building_2 = new Image();
+var building_3 = new Image();
+var building_4 = new Image();
+var building_bank = new Image();
 
+var background = new Image();
 
 /**
 *	Sound
@@ -58,9 +74,10 @@ var building_1 = new Image();
 window.onload = onAllAssetsLoaded;
 
 // On load
+
 function onAllAssetsLoaded(){
 	document.addEventListener("deviceready", onDeviceReady, false);
-	//onDeviceReady(); // This is for web testing
+	onDeviceReady(); // This is for web testing
 }
 
 function onDeviceReady(){
@@ -77,10 +94,61 @@ function gameSetup(){
 	roundSetup();
 }
 
-function generateWorld(){
-	go = new GameObject(building_1, 0, 0, 100, 100);
-	sprites.push(go);
+function initialise(){
+	renderCanvasInterval = null;
+	sprites = [];
+	building_1.src = "./Images/Sprites/building_new_1.png";
+	building_2.src = "./Images/Sprites/building_new_2.png";
+	building_3.src = "./Images/Sprites/building_new_3.png";
+	building_4.src = "./Images/Sprites/building_new_4.png";
+	building_bank.src = "./Images/Sprites/building_bank.png";
+	background.src = "./Images/Backgrounds/background.png";
 }
+
+function generateWorld(){
+	gameBuilding_A = new Building(building_1, 0, 0, 100, 100);
+	
+	/*
+	gameBuilding_B = new Building();
+	gameBuilding_B.init(building_2, 0, 0, 100, 100);
+	
+	gameBuilding_C = new Building();
+	gameBuilding_C.init(building_3, 0, 0, 100, 100);
+	
+	gameBuilding_D = new Building();
+	gameBuilding_D.init(building_4, 0, 0, 100, 100);
+	
+	gameBuilding_bank = new Building();
+	gameBuilding_bank.init(building_bank, 0, 0, 100, 100);
+	*/
+	
+	gameBackground = new Background();
+	gameBackground.init(background, 0, 0);
+	
+	/*
+	var building1 =	new Building();
+	building1.init(building_1, 0, 0, 100, 100);
+	building1.setX(20);
+	sprites.push(building1);
+	
+	var building2 = new Building();
+	building2.init(building_1, 0, 0, 100, 100);
+	building2.setX(100);
+	sprites.push(building2);
+	*/
+	
+	var building1 = createBuilding(building_1, 20, 40);
+	var building2 = createBuilding(building_1, 80, 40);
+	var building3 = createBuilding(building_1, 140, 40);
+}
+
+function createBuilding(img, x, y){
+	building = new Building();
+	building.init(img, x, y, 100, 100);
+	sprites.push(building);
+	return building;
+}
+
 
 function resizeWindow(){
 	var gameArea = document.getElementById('gamearea');
@@ -108,10 +176,7 @@ function resizeWindow(){
     maincanvas.height = newHeight;
 }
 
-function initialise(){
-	sprites = [];
-	building_1.src = "./Images/Sprites/building_new_1.png";
-}
+
 
 function roundSetup(){
 	renderCanvasInterval = setInterval(update, 10);  			// game loop
@@ -119,7 +184,7 @@ function roundSetup(){
 
 function renderBackground(){
 	mctx.clearRect(0, 0, maincanvas.width, maincanvas.height);
-	
+	gameBackground.draw();
 	for(i = 0; i < sprites.length; i++){
 		sprites[i].draw();
 	}
