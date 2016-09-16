@@ -59,5 +59,33 @@ function Background(){
 	function draw(){
 		mctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 	}
+	
+	this.setX = setX;
+	function setX(newX){
+		this.x = newX;
+	}
+	
+	this.getX = getX;
+	function getX(){
+		return this.x;
+	}
+	
+	
+	this.setY = setY;
+	function setY(newY){
+		this.y = setY;
+	}
+	
+	this.setWidth = setWidth;
+	function setWidth(setWidth){
+		this.width = newWidth;
+	}
+	
+	this.setHeight = setHeight;
+	function setHeight(newHeight){
+		this.height = newHeight;
+	}
+	
+	
 }
 Background.prototype = new GameObject();

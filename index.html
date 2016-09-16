@@ -33,19 +33,23 @@ var mctx;
 **/
 	
 var sprites;
+var backgrounds;
 var go;
 var screenWidth;
 var screenHeight;
+
+var screenDown;
+var screenWasSwiped;
 	
 /**
 *	Objects
 **/
-	var gameBackground;
-	var gameBuilding_A;
-	var gameBuilding_B;
-	var gameBuilding_C;
-	var gameBuilding_D;
-	var gameBuilding_bank;
+var gameBackground;
+var gameBuilding_A;
+var gameBuilding_B;
+var gameBuilding_C;
+var gameBuilding_D;
+var gameBuilding_bank;
 	
 	
 /**
@@ -83,7 +87,11 @@ function onAllAssetsLoaded(){
 function onDeviceReady(){
     maincanvas = document.getElementById("mcanvas");
     mctx = maincanvas.getContext("2d");
-		
+	
+	maincanvas.addEventListener("touchstart", handleTouchstartEvent, false);
+	maincanvas.addEventListener("touchend", handleTouchendEvent, false);
+    maincanvas.addEventListener("touchmove", handleTouchmoveEvent, false);
+	
 	gameSetup();
 }
 
@@ -97,6 +105,7 @@ function gameSetup(){
 function initialise(){
 	renderCanvasInterval = null;
 	sprites = [];
+	backgrounds = [];
 	building_1.src = "./Images/Sprites/building_new_1.png";
 	building_2.src = "./Images/Sprites/building_new_2.png";
 	building_3.src = "./Images/Sprites/building_new_3.png";
@@ -152,7 +161,13 @@ function generateWorld(){
 	*/
 	
 	gameBackground = new Background();
+	gameBackgroundB = new Background();
+	
 	gameBackground.init(background, 0, 0, screenWidth, screenHeight);
+	gameBackgroundB.init(background, screenWidth, 0, screenWidth, screenHeight);
+	
+	backgrounds.push(gameBackground);
+	backgrounds.push(gameBackgroundB);
 	
 	/*
 	var building1 =	new Building();
@@ -194,7 +209,61 @@ function update(){
 	renderBackground();
 }
 
+/**
+*	Touch
+**/
 
+function handleTouchstartEvent(e){
+    touchStartX = e.changedTouches[0].pageX;
+    touchStartY = e.changedTouches[0].pageY;
+	
+	screenDown = true;
+	checkTap(touchStartX, touchStartY);
+}
+
+function handleTouchmoveEvent(e){
+    screenWasSwiped = true;
+}
+
+function handleTouchendEvent(e){
+    var touchEndX;
+    var touchEndY;
+
+	screenDown = false;
+    touchEndX = e.changedTouches[0].pageX;
+    touchEndY = e.changedTouches[0].pageY;
+	
+    if(screenWasSwiped){
+        screenWasSwiped = false;
+		if(Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY)){ 	// vertical swipe
+		
+		}
+		else{
+			var moveAmount;
+			if(touchStartX > touchEndX){ 											// horizontal swipe to right
+				moveAmount = touchStartX-touchEndX;
+			}
+			else{																	// horizontal swipe to left
+				moveAmount = touchEndX-touchStartX;
+				moveAmount = moveAmount*-1;
+			}
+			horizontalSwipe(moveAmount);
+		}
+    }
+	else{	// tap
+		
+	}
+}
+
+/**
+*	Movement
+**/
+
+function horizontalSwipe(moveAmount){
+	for(i = 0; i < backgrounds.length; i++){
+		backgrounds[i].setX(backgrounds.getX()+moveAmount);
+	}
+}
 
 
 </script>
