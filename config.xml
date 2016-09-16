@@ -1,11 +1,11 @@
 <widget xmlns 		= "http://www.w3.org/ns/widgets"
         xmlns:gap 	= "http://phonegap.com/ns/1.0"
         id 			= "GirlPower.RedCity"
-		version 	= "1.0.0">
+		version 	= "0.1.0">
 
 	<name>Red City</name>
 	<description>Historial Lodz</description>
-	<author email="girlpower@gmail.com" href="www.girlpower.com">Girl Power</author>
+	<author email="girlpower@gmail.com" href="www.girlpower.com"></author>
 
 
 	<!-- Customize your app and platform with the preference element. -->
