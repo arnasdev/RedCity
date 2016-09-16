@@ -264,7 +264,8 @@ function handleTouchendEvent(e){
 
 function horizontalSwipe(moveAmount){
 	for(i = 0; i < backgrounds.length; i++){
-		backgrounds[i].setX(backgrounds.getX()+moveAmount);
+		var offset = backgrounds.getX();
+		backgrounds[i].setX(offset+moveAmount);
 	}
 }
 
