@@ -40,6 +40,9 @@ var screenHeight;
 
 var screenDown;
 var screenWasSwiped;
+
+var touchStartX;
+var touchStartY;
 	
 /**
 *	Objects
@@ -218,7 +221,7 @@ function handleTouchstartEvent(e){
     touchStartY = e.changedTouches[0].pageY;
 	
 	screenDown = true;
-	checkTap(touchStartX, touchStartY);
+	//checkTap(touchStartX, touchStartY);
 }
 
 function handleTouchmoveEvent(e){
@@ -251,7 +254,7 @@ function handleTouchendEvent(e){
 		}
     }
 	else{	// tap
-		
+
 	}
 }
 
