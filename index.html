@@ -59,19 +59,13 @@ window.onload = onAllAssetsLoaded;
 
 // On load
 function onAllAssetsLoaded(){
-	//document.addEventListener("deviceready", onDeviceReady, false);
-	onDeviceReady(); // This is for web testing
+	document.addEventListener("deviceready", onDeviceReady, false);
+	//onDeviceReady(); // This is for web testing
 }
 
 function onDeviceReady(){
     maincanvas = document.getElementById("mcanvas");
     mctx = maincanvas.getContext("2d");
-	
-	/*
-	maincanvas.addEventListener("touchstart", handleTouchstartEvent, false);
-	maincanvas.addEventListener("touchend", handleTouchendEvent, false);
-    maincanvas.addEventListener("touchmove", handleTouchmoveEvent, false);
-		*/
 		
 	gameSetup();
 }
@@ -113,12 +107,6 @@ function resizeWindow(){
 	
     maincanvas.width = newWidth;
     maincanvas.height = newHeight;
-	
-	//Background.prototype.canvasWidth = newWidth;
-	//Background.prototype.canvasHeight = newHeight;
-	
-	//Foreground.prototype.canvasWidth = newWidth;
-	//Foreground.prototype.canvasHeight = newHeight;
 }
 
 function initialise(){
