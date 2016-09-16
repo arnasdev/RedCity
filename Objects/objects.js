@@ -57,7 +57,7 @@ Building.prototype = new GameObject();
 function Background(){
 	this.draw = draw;
 	function draw(){
-		mctx.drawImage(this.img, this.x, this.y);
+		mctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 	}
 }
 Background.prototype = new GameObject();
