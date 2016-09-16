@@ -3,22 +3,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>BigKnight</title>
+		<title>Red City</title>
 		<link rel="stylesheet" type="text/css" href="Styles/style.css">
 		<script type="text/javascript" src="cordova.js"></script>
 	</head>
 
 	<body>
 		<div id = "gamearea">
-			<canvas id = "bcanvas" style = "z-index: 0">
+			<canvas id = "mcanvas" style = "z-index: 1">
 				Your browser does not support the HTML5 'Canvas' tag.
 			</canvas>
-			<canvas id = "fcanvas" style = "z-index: 1">
-				Your browser does not support the HTML5 'Canvas' tag.
-			</canvas>
-			<canvas id = "gcanvas" style = "z-index: 2">
-				Your browser does not support the HTML5 'Canvas' tag.
-			</canvas>
+
 		</div>
 	</body>
 </html>
@@ -30,144 +25,69 @@
 **/
 
 // Foreground Canvas
-var forecanvas;
-var fctx;
-// Background Canvas
-var backcanvas;
-var bctx;
-// GUI Canvas
-var guicanvas
-var gctx;
+var maincanvas;
+var mctx;
 
 /**
 *	Game State Variables
 **/
-
-// Array of NPCs and PC
-var characters = [];
-var player = null;
-var musicPlaying = false;
 	
-// Touch variables
-var touchStartX = null;
-var touchStartY = null;
-var screenWasSwiped = false;
-var screenDown = false;
-	
-// Stops screen from scrolling
-var scroll = false;
-	
-// Distance between player and enemy to stop scroll
-var collideDistance = 100;
-	
-// Player variables
-var playerBaseDmg = 50;		// Base damage
-var inAir = false;			// Is the player in the air?
-var blocking = false;		// Is the player blocking?
-var kills = 0;
-var score = 0;
-var dead = false;
-var winKills = 6;
+var sprites;
+var go;
+var windowWidth;
+var windowHeight;
 	
 /**
 *	Intervals
 **/
 
-var playerJumpInterval = null;
-var jumpCooldownInterval = null;
-	
-var playerAttackInterval = null;
-var attackCooldownInterval = null;
-	
-var enemyAttackCooldownInterval = null;
-	
-var spriteChangeInterval = null;
-	
 var renderCanvasInterval = null;
 	
 /**
 *	Images
 **/
 
-// BG
-var background = new Image();
-var foreground = new Image();
-// Characters
-var playerSprite = new Image();
-var goblinSprite = new Image();
-// GUI
-var swordIcon = new Image();
-var shieldIcon = new Image();
-var retryMenu = new Image();
-var victoryMenu = new Image();
+var building_1 = new Image();
 
-background.src = './Images/Background/bg_mountains.png';
-foreground.src = './Images/Background/bg_grassground.png';
-playerSprite.src = './Images/Sprites/Knight/knight.png';
-goblinSprite.src = './Images/Sprites/Goblin/goblin.png';
-
-swordIcon.src = './Images/Sprites/GUI/swordIcon.png';
-shieldIcon.src = './Images/Sprites/GUI/shieldIcon.png';
-retryMenu.src = './Images/Sprites/GUI/retryMenu.png';
-victoryMenu.src = './Images/Sprites/GUI/victoryMenu.png';
 
 /**
 *	Sound
 **/
 
-var gameLoop = new Audio('./Sounds/Music/battle3.mp3');
-
-var goblinDamage = new Audio('./Sounds/Effects/Goblin/damage.wav');
-var goblinDeath = new Audio('./Sounds/Effects/Goblin/death.wav');
-
-var playerDamage = new Audio('./Sounds/Effects/Player/damage.wav');
-var playerDeath = new Audio('./Sounds/Effects/Player/death.wav');
-var playerBlock = new Audio('./Sounds/Effects/Player/shieldblock.wav');
-
-var imageNumTiles = 6;  // The number of tiles per row in the tileset image
-
-
+// Start
 window.onload = onAllAssetsLoaded;
 
 // On load
 function onAllAssetsLoaded(){
-	document.addEventListener("deviceready", onDeviceReady, false);
-	//onDeviceReady();
+	//document.addEventListener("deviceready", onDeviceReady, false);
+	onDeviceReady(); // This is for web testing
 }
 
 function onDeviceReady(){
-    forecanvas = document.getElementById("fcanvas");
-    fctx = forecanvas.getContext("2d");
+    maincanvas = document.getElementById("mcanvas");
+    mctx = maincanvas.getContext("2d");
+	
 	/*
-	fctx.mozImageSmoothingEnabled = false;
-	fctx.msImageSmoothingEnabled = false;
-	fctx.imageSmoothingEnabled = false;
-	*/
-	
-	backcanvas = document.getElementById("bcanvas");
-    bctx = backcanvas.getContext("2d");
-
-	
-	guicanvas = document.getElementById("gcanvas");
-    gctx = guicanvas.getContext("2d");
-
-	guicanvas.addEventListener("touchstart", handleTouchstartEvent, false);
-	guicanvas.addEventListener("touchend", handleTouchendEvent, false);
-    guicanvas.addEventListener("touchmove", handleTouchmoveEvent, false);
-	
-	//window.addEventListener('resize', resizeWindow, false);
-	//window.addEventListener('orientationchange', resizeWindow, false);
+	maincanvas.addEventListener("touchstart", handleTouchstartEvent, false);
+	maincanvas.addEventListener("touchend", handleTouchendEvent, false);
+    maincanvas.addEventListener("touchmove", handleTouchmoveEvent, false);
+		*/
 		
 	gameSetup();
 }
 
 function gameSetup(){
+	initialise();
 	resizeWindow();
-	roundSetup();
 	generateWorld();
+	roundSetup();
+	
 }
 
-
+function generateWorld(){
+	go = new GameObject(building_1, 0, 0, 100, 100);
+	sprites.push(go);
+}
 
 function resizeWindow(){
 	var gameArea = document.getElementById('gamearea');
@@ -191,346 +111,38 @@ function resizeWindow(){
 	gameArea.style.marginTop = (-newHeight / 2) + 'px';
 	gameArea.style.marginLeft = (-newWidth / 2) + 'px';
 	
-    forecanvas.width = newWidth;
-    forecanvas.height = newHeight;
+    maincanvas.width = newWidth;
+    maincanvas.height = newHeight;
 	
-	backcanvas.width = newWidth;
-	backcanvas.height = newHeight;
+	//Background.prototype.canvasWidth = newWidth;
+	//Background.prototype.canvasHeight = newHeight;
 	
-	guicanvas.width = newWidth;
-	guicanvas.height = newHeight;
-	
-	Background.prototype.canvasWidth = newWidth;
-	Background.prototype.canvasHeight = newHeight;
-	
-	Foreground.prototype.canvasWidth = newWidth;
-	Foreground.prototype.canvasHeight = newHeight;
+	//Foreground.prototype.canvasWidth = newWidth;
+	//Foreground.prototype.canvasHeight = newHeight;
 }
 
-function createGoblin(x){
-	goblin = new Enemy(goblinSprite, 100, 25);
-	goblin.setX(x);
-	characters.push(goblin);
-	return goblin;
+function initialise(){
+	sprites = [];
+	building_1.src = "./Images/Sprites/building_new_1.png";
 }
 
 function roundSetup(){
-	spawnPlayer();
-	createBackground();
 	renderCanvasInterval = setInterval(update, 10);  			// game loop
-	spriteChangeInterval = setInterval(updateSprites, 150);		// sprite speed
-	playMusic();
-	renderGUI();
-	scroll = true;
-}
-
-function spawnPlayer(){
-	player = new Player();
-	characters.push(player);
-}
-
-function createBackground(){
-	bg = new Background();
-	bg.init(0, 0, backcanvas.width, backcanvas.height);
-	fg = new Foreground();
-	fg.init(0, 0, backcanvas.width, backcanvas.height);
-}
-
-function renderForeground(){
-	// Draws all characters on foreground canvas
-	fctx.clearRect(0, 0, forecanvas.width, forecanvas.height);
-	for(i = 0; i < characters.length; i++){
-		characters[i].draw();
-	}
 }
 
 function renderBackground(){
-	// Draws all characters on foreground canvas
-	bctx.clearRect(0, 0, backcanvas.width, backcanvas.height);
-	bg.draw();
-	fg.draw();
-}
-
-function renderGUI(){
-	// Draws all characters on foreground canvas
-	gctx.clearRect(0, 0, guicanvas.width, guicanvas.height);
-	gctx.font="30px Trebuchet MS";
-	//gctx.fillText("20123", 10, 50);
-	gctx.drawImage(swordIcon, forecanvas.width-swordIcon.width-10, (forecanvas.height/2)-(swordIcon.height/2));
-	gctx.drawImage(shieldIcon, 10, (forecanvas.height/2)-(shieldIcon.height/2));
-	//gui.draw();
-}
-
-function drawRetry(){
-	gctx.drawImage(retryMenu, (gcanvas.width/2)-retryMenu.width/2, (gcanvas.height/2)-retryMenu.height/2);
-	gctx.fillText(kills, gcanvas.width/2-50, gcanvas.height/2-20);
-}
-
-function drawWin(){
-	gctx.drawImage(victoryMenu, (gcanvas.width/2)-victoryMenu.width/2, (gcanvas.height/2)-victoryMenu.height/2);
-	gctx.fillText(kills, gcanvas.width/2-50, gcanvas.height/2-20);
+	mctx.clearRect(0, 0, maincanvas.width, maincanvas.height);
+	
+	for(i = 0; i < sprites.length; i++){
+		sprites[i].draw();
+	}
 }
 
 function update(){
-	// Checks whether its necessary to spawn more enemies
-	checkSpawn();
-	
-	
-	if(!dead){
-		// Updates background
-		if(scroll){
-			bg.update();
-			fg.update();
-		}
-		
-		// Updates enemies
-		if(characters.length > 1){
-			characters[1].update();
-		}
-	}
-	else{
-		cleanCharacters();
-		drawRetry();
-	}
-	if(kills >= winKills){
-		cleanCharacters();
-		drawWin();
-	}
-
-	if(!scroll){
-		characters[1].attack();
-	}
-	// Render
-	renderForeground();
 	renderBackground();
-	
-	// Collision
-	collisionTest();
 }
 
-/**
-*	Game restart/cleanup
-**/
 
-function initialise(){
-	characters = [];
-	player = null;
-	touchStartX = null;
-	touchStartY = null;
-	screenWasSwiped = false;
-	screenDown = false;
-	scroll = false;
-	collideDistance = 100;
-	playerBaseDmg = 50;		// Base damage
-	inAir = false;			// Is the player in the air?
-	blocking = false;		// Is the player blocking?
-	kills = 0;
-	score = 0;
-	dead = false;
-	playerJumpInterval = null;
-	jumpCooldownInterval = null;
-	playerAttackInterval = null;
-	attackCooldownInterval = null;
-	enemyAttackCooldownInterval = null;
-	spriteChangeInterval = null;
-	renderCanvasInterval = null;
-	
-	gameSetup();
-}
 
-function restartGame(){
-	spriteChangeInterval = destroyInterval(spriteChangeInterval);
-	renderCanvasInterval = destroyInterval(renderCanvasInterval);
-	initialise();
-}
-
-function cleanCharacters(){
-	for(i = 0; i < characters.length; i++){
-		characters[i].destroy();
-	}
-}
-
-/**
-*	Hardware functions
-**/
-
-function vibrate(){
-	navigator.notification.vibrate(200);  // .2 second
-}
-
-gameLoop.addEventListener('ended', function() {
-this.currentTime = 0;
-this.play();
-}, false);
-
-function playMusic(){
-	if(!musicPlaying){
-		gameLoop.play();
-		musicPlaying = true;
-	}
-}
-
-function playSound(sound){
-	sound.play();
-}
-
-/**
-*	Touch functions 
-**/
-
-// TESTING PURPOSES KEYBOARD FUNCTIONALITY
-document.onkeypress = function (e) {
-    e = e || window.event;
-    if(e.keyCode == 32){
-		player.jump();
-	}
-	if(e.keyCode == 119){
-		player.attack();
-	}
-};
-
-function handleTouchstartEvent(e){
-    touchStartX = e.changedTouches[0].pageX;
-    touchStartY = e.changedTouches[0].pageY;
-	
-	screenDown = true;
-	checkTap(touchStartX, touchStartY);
-}
-
-function handleTouchmoveEvent(e){
-    screenWasSwiped = true;
-}
-
-function handleTouchendEvent(e){
-    var touchEndX;
-    var touchEndY;
-
-	screenDown = false;
-    touchEndX = e.changedTouches[0].pageX;
-    touchEndY = e.changedTouches[0].pageY;
-	
-    if(screenWasSwiped){
-        screenWasSwiped = false;
-		if(Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY)){ // vertical swipe
-		
-		}
-		else{
-			if(touchStartY > touchEndY){ // swipe up and jump
-				if(jumpCooldownInterval == null){
-					player.jump();
-				}
-			}
-		}
-    }
-	else{	// tap
-		checkTap(touchEndX, touchEndY);
-	}
-}
-
-/**
-*	Collision functions 
-**/
-
-function collisionTest(){
-	if(characters.length > 1){
-		if(player.getX()+collideDistance > characters[1].getX()){
-			scroll = false;
-		}
-	}
-}
-
-function checkTap(x,y){
-	if(kills >= winKills){
-		if(x > (gcanvas.width/2-80) && x < (gcanvas.width/2+80)){
-			if(y > (gcanvas.height/2+90) && y < (gcanvas.height/2+150)){
-				restartGame();
-			}
-		}
-	}
-	if(!dead){
-		// gctx.drawImage(swordIcon, forecanvas.width-swordIcon.width-10, (forecanvas.height/2)-(swordIcon.height/2));
-		if(x > (guicanvas.width-swordIcon.width) && x < (guicanvas.width)){
-			if(y > (forecanvas.height/2)-(swordIcon.height/2) && y < ((forecanvas.height/2)+(swordIcon.height/2))){
-				player.attack();
-			}
-		}
-		
-		// gctx.drawImage(shieldIcon, 10, (forecanvas.height/2)-(shieldIcon.height/2));
-		if(x > (10) && x < (shieldIcon.width+10)){
-			if(y > (forecanvas.height/2)-(shieldIcon.height/2) && y < ((forecanvas.height/2)+(shieldIcon.height/2))){
-				player.shield();
-			}
-		}
-	}
-	else{
-		if(x > (gcanvas.width/2-80) && x < (gcanvas.width/2+80)){
-			if(y > (gcanvas.height/2+90) && y < (gcanvas.height/2+150)){
-				restartGame();
-			}
-		}
-	}
-}
-
-/**
-*	Sprite updating
-**/
-
-function updateSprites(){
-	if(inAir){
-		player.jumpAnim();
-	}
-	else{
-		if(scroll){
-			player.update();
-		}
-		else{
-			if(blocking){
-				
-			}
-			else{
-				player.stillAnim();
-			}
-		}
-	}
-	if(screenDown == false){
-		characters[0].unblock();
-	}
-}
-
-/**
-*	Game world generation
-**/
-
-function checkSpawn(){
-	if(scroll && kills < winKills){
-		if(characters.length <= 3){
-			createNewEnemy();
-		}
-	}
-}
-
-function createNewEnemy(){
-	if(kills < 5){
-		createGoblin(1000);
-	}
-	else if(kills < 10){
-		createGoblin(1000);
-	}
-	else{
-		createGoblin(1000);
-	}
-}
-
-function generateWorld(){
-	generateMobs();
-}
-
-function generateMobs(){
-	createGoblin(800);
-	createGoblin(1000);
-	createGoblin(1200);
-	//goblin.setX(goblin.getX()+100);
-	//characters.push(goblin);
-}
 
 </script>

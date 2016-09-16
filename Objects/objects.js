@@ -4,6 +4,19 @@ function destroyInterval(interval){
 	return interval;
 }
 
+function GameObject(img, x, y, width, height){
+	var x = x;
+	var y = y;
+	var img = img;
+	var width = width;
+	var height = height;
+	
+	this.draw = draw;
+	function draw(){
+		mctx.drawImage(img, x, y, width, height);
+	}
+}
+
 /* Player Object */
 function Player(){
 	var x = (backcanvas.width/2)-(playerSprite.width/12);
@@ -447,8 +460,8 @@ function Background(){
 	
 	this.draw = draw;
 	function draw(){
-		bctx.drawImage(background, this.x, this.y, this.width, this.height);
-		bctx.drawImage(background, this.x + backcanvas.width, this.y, this.width, this.height);
+		mctx.drawImage(maincanvas, this.x, this.y, this.width, this.height);
+		mctx.drawImage(maincanvas, this.x + maincanvas.width, this.y, this.width, this.height);
 	}
 	
 	this.update = update;

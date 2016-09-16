@@ -1,11 +1,11 @@
 <widget xmlns 		= "http://www.w3.org/ns/widgets"
         xmlns:gap 	= "http://phonegap.com/ns/1.0"
-        id 			= "ladstudios.bigknight"
+        id 			= "GirlPower.RedCity"
 		version 	= "1.0.0">
 
-	<name>Bit Knight</name>
-	<description>A sidescrolling game</description>
-	<author email="cibulskisarnas@gmail.com" href="www.arnasc.com">Arnas Cibulskis</author>
+	<name>Red City</name>
+	<description>Historial Lodz</description>
+	<author email="girlpower@gmail.com" href="www.girlpower.com">Girl Power</author>
 
 
 	<!-- Customize your app and platform with the preference element. -->
