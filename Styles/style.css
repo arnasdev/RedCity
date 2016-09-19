@@ -55,6 +55,17 @@ z-index: 1;
 	position: absolute;
 	width: 500px;
 	height: 40px;
-	left: calc(50% - 250px);
+	left: calc(20% - 250px);
 	top: 20px;
+}
+
+#coins
+{
+	background-color: yellow;
+	position: absolute;
+	width: 128px;
+	height: 128px;
+	right: 80px;
+	top: 20px;
+	
 }
