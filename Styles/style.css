@@ -84,12 +84,12 @@ z-index: 1;
 	position: absolute;
 	width: 10%;
 	height: 70%;
-	left: 2%;
+	left: 0%;
 	top: 20%;
 }
 
 .baricons{
-left: -80px;
+
 }
 
 #bankicon
@@ -97,7 +97,7 @@ left: -80px;
 	
 	position: absolute;
 	background-image: url("../Images/GUI/bankicon.png");
-	width: 130px;
+	width: 90px;
 	height: 140px;
 	top: 0px;
 
@@ -107,7 +107,7 @@ left: -80px;
 {
 	position: absolute;
 	background-image: url("../Images/GUI/hammericon.png");
-	width: 130px;
+	width: 90px;
 	height: 140px;
 	top: 33%;
 }
@@ -116,7 +116,7 @@ left: -80px;
 {
 	position: absolute;
 	background-image: url("../Images/GUI/qrcodeicon.png");
-	width: 130px;
+	width: 90px;
 	height: 140px;
 	top: 66%;
 }
