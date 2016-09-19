@@ -258,12 +258,16 @@ function onDeviceReady(){
 	buildButton = document.getElementById('hammericon');
 	qrcodeButton = document.getElementById('qrcodeicon');
 	
+	settings.addEventListener("touchstart", settingsPress, false);
+	bankButton.addEventListener("touchstart", bankPress, false);
+	buildButton.addEventListener("touchstart", buildPress, false);
+	qrcodeButton.addEventListener("touchstart", qrcodePress, false);
 	
-	settings.addEventListener('touchstart', function(){
+	/*settings.addEventListener('touchstart', function(){
 		settingsPress();
-	});
+	});*/
 	
-	bankButton.addEventListener('touchstart', function(){
+	/*bankButton.addEventListener('touchstart', function(){
 		bankPress();
 	});
 	
@@ -273,7 +277,7 @@ function onDeviceReady(){
 	
 	qrcodeButton.addEventListener('touchstart', function(){
 		qrcodePress();
-	});
+	});*/
 	/*
 	gui.addEventListener("touchstart", handleTouchstartEvent, false);
 	gui.addEventListener("touchend", handleTouchendEvent, false);
