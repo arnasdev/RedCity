@@ -221,6 +221,8 @@ function update(){
 **/
 
 function handleTouchstartEvent(e){
+	console.log("Touch started");
+	
     touchStartX = e.changedTouches[0].pageX;
     touchStartY = e.changedTouches[0].pageY;
 	
@@ -230,15 +232,21 @@ function handleTouchstartEvent(e){
 
 function handleTouchmoveEvent(e){
     screenWasSwiped = true;
+	console.log("Touch move");
 }
 
 function handleTouchendEvent(e){
+	console.log("Touch end");
+
     var touchEndX;
     var touchEndY;
 
 	screenDown = false;
     touchEndX = e.changedTouches[0].pageX;
     touchEndY = e.changedTouches[0].pageY;
+	
+	console.log("Touch end X: "+touchEndX);
+	console.log("Touch end Y: "+touchEndY);
 	
     if(screenWasSwiped){
         screenWasSwiped = false;
@@ -249,10 +257,12 @@ function handleTouchendEvent(e){
 			var moveAmount;
 			if(touchStartX > touchEndX){ 											// horizontal swipe to right
 				moveAmount = touchStartX-touchEndX;
+				console.log("Swipe to right");
 			}
 			else{																	// horizontal swipe to left
 				moveAmount = touchEndX-touchStartX;
 				moveAmount = moveAmount*-1;
+				console.log("Swipe to left");
 			}
 			horizontalSwipe(moveAmount);
 		}
@@ -269,6 +279,7 @@ function handleTouchendEvent(e){
 function horizontalSwipe(moveAmount){
 	for(i = 0; i < backgrounds.length; i++){
 		var offset = backgrounds.getX();
+		console.log("Offset: "+offset);
 		backgrounds[i].setX(offset-moveAmount);
 	}
 }
