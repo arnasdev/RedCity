@@ -50,6 +50,7 @@
 // Foreground Canvas
 var maincanvas;
 var mctx;
+var gui;
 
 /**
 *	Game State Variables
@@ -114,11 +115,12 @@ function onAllAssetsLoaded(){
 
 function onDeviceReady(){
     maincanvas = document.getElementById("mcanvas");
+	gui = document.getElementById("gui");
     mctx = maincanvas.getContext("2d");
 	
-	maincanvas.addEventListener("touchstart", handleTouchstartEvent, false);
-	maincanvas.addEventListener("touchend", handleTouchendEvent, false);
-    maincanvas.addEventListener("touchmove", handleTouchmoveEvent, false);
+	gui.addEventListener("touchstart", handleTouchstartEvent, false);
+	gui.addEventListener("touchend", handleTouchendEvent, false);
+    gui.addEventListener("touchmove", handleTouchmoveEvent, false);
 	
 	gameSetup();
 }
