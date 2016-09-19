@@ -269,7 +269,7 @@ function handleTouchendEvent(e){
 function horizontalSwipe(moveAmount){
 	for(i = 0; i < backgrounds.length; i++){
 		var offset = backgrounds.getX();
-		backgrounds[i].setX(offset+moveAmount);
+		backgrounds[i].setX(offset-moveAmount);
 	}
 }
 
