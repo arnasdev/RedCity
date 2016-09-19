@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Red City</title>
 		<link rel="stylesheet" type="text/css" href="Styles/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+		<!--<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">-->
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	</head>
 
@@ -283,9 +283,6 @@ function handleTouchendEvent(e){
     if(screenWasSwiped){
         screenWasSwiped = false;
 		if(Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY)){ 	// vertical swipe
-		
-		}
-		else{
 			var moveAmount;
 			if(touchStartX > touchEndX){ 											// horizontal swipe to right
 				moveAmount = touchStartX-touchEndX;
@@ -297,6 +294,9 @@ function handleTouchendEvent(e){
 				console.log("Swipe to left");
 			}
 			horizontalSwipe(moveAmount);
+		}
+		else{
+			
 		}
     }
 	else{	// tap
@@ -310,7 +310,7 @@ function handleTouchendEvent(e){
 
 function horizontalSwipe(moveAmount){
 	for(i = 0; i < backgrounds.length; i++){
-		var offset = backgrounds.getX();
+		var offset = backgrounds[i].getX();
 		console.log("Offset: "+offset);
 		backgrounds[i].setX(offset+moveAmount);
 	}
