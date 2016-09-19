@@ -33,7 +33,20 @@
 				<div class = "shine"></div>
 			</div>
 			<div id = "settings">
-					
+	
+			</div>
+			
+			<div id = 'bankMenu'>
+				bank stuff
+			</div>
+			<div id = 'buildMenu'>
+				build stuff
+			</div>
+			<div id = 'qrcodeMenu'>
+				qrcode stuff
+			</div>
+			<div id = 'settingsMenu'>
+				settings stuff
 			</div>
 		</div>
 	</body>
@@ -45,6 +58,116 @@
 *	JS GUI
 **/
 
+/**
+*	Buttons & Menus
+**/
+var bankMenu = document.getElementById('bankMenu');
+var buildMenu = document.getElementById('buildMenu');
+var qrcodeMenu = document.getElementById('qrcodeMenu');
+var settingsMenu = document.getElementById('settingsMenu');
+
+var settingsToggled = false;
+var bankToggled = false;
+var buildToggled = false;
+var qrcodeToggled = false;
+
+function settingsPress(){
+	untoggleForSettings();
+	toggleSettingsTab();
+}
+
+function bankPress(){
+	untoggleForBank();
+	toggleBankTab();
+}
+
+function buildPress(){
+	untoggleForBuild();
+	toggleBuildTab();
+}
+
+function qrcodePress(){
+	untoggleForQR();
+	toggleQRTab();
+}
+
+function toggleBankTab(){
+	if(bankToggled == false){
+		bankMenu.style.opacity = 1;
+		bankToggled = true;
+	}
+	else{
+		bankMenu.style.opacity = 0;
+		bankToggled = false;
+	}
+	
+}
+
+function toggleBuildTab(){
+	if(buildToggled == false){
+		buildMenu.style.opacity = 1;
+		buildToggled = true;
+	}
+	else{
+		buildMenu.style.opacity = 0;
+		buildToggled = false;
+	}
+}
+
+function toggleQRTab(){
+	if(qrcodeToggled == false){
+		qrcodeMenu.style.opacity = 1;
+		qrcodeToggled = true;
+	}
+	else{
+		qrcodeMenu.style.opacity = 0;
+		qrcodeToggled = false;
+	}
+}
+
+function untoggleForQR(){
+	console.log('untoggling');
+	if(bankToggled == true){
+		console.log("toggled bank");
+		toggleBankTab();
+	}
+	if(buildToggled == true){
+		console.log("toggled build");
+		toggleBuildTab();
+	}
+	if(settingsToggled == true){
+		console.log("toggled settings");
+		toggleSettingsTab();
+	}
+}
+
+
+function toggleSettingsTab(){
+	if(settingsToggled == false){
+		settingsMenu.style.opacity = 1;
+		settingsToggled = true;
+	}
+	else{
+		settingsMenu.style.opacity = 0;
+		settingsToggled = false;
+	}
+}
+
+function untoggleForSettings(){
+	console.log('untoggling');
+	if(bankToggled == true){
+		console.log("toggled bank");
+		toggleBankTab();
+	}
+	if(buildToggled == true){
+		console.log("toggled build");
+		toggleBuildTab();
+	}
+	if(qrcodeToggled == true){
+		console.log("toggled qr");
+		toggleQRTab();
+	}
+}
 
 /**
 *	JS Canvas
@@ -136,7 +259,7 @@ function onDeviceReady(){
 	qrcodeButton = document.getElementById('qrcodeicon');
 	
 	
-	settingsButton.addEventListener('click', function(){
+	settings.addEventListener('click', function(){
 		settingsPress();
 	});
 	
@@ -284,25 +407,7 @@ function update(){
 	renderBackground();
 }
 
-/**
-*	Buttons & Menus
-**/
 
-function settingsPress(){
-	console.log("settings");
-}
-
-function bankPress(){
-	console.log("bank");
-}
-
-function buildPress(){
-	console.log("build");
-}
-
-function qrcodePress(){
-	console.log("qrcode");
-}
 
 
 /**

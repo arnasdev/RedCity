@@ -107,8 +107,8 @@ z-index: 1;
 	top: -5px;
 	left: -32px;
 	position: absolute;
-	letter-spacing: 4px;
-	text-shadow: 2px 2px #444444;
+	/*letter-spacing: 2px;
+	text-shadow: 2px 2px #444444;*/
 }
 
 #coinicon{
@@ -162,4 +162,18 @@ z-index: 1;
 	width: 89px;
 	height: 100px;
 	top: 66%;
+}
+
+/* Menus */
+#bankMenu, #buildMenu, #qrcodeMenu, #settingsMenu
+{
+	position: absolute;
+	left: 9%;
+	top: 5%;
+	width: 86%;
+	height: 80%;
+	background-color: gray;
+	opacity: 0;
+	border: 1px solid black;
+	border-radius: 15px;
 }
