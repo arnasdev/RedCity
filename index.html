@@ -43,6 +43,8 @@ var screenWasSwiped;
 
 var touchStartX;
 var touchStartY;
+var touchEndX;
+var touchEndY;
 	
 /**
 *	Objects
@@ -109,6 +111,11 @@ function initialise(){
 	renderCanvasInterval = null;
 	sprites = [];
 	backgrounds = [];
+	touchStartX = [];
+	touchStartY = [];
+	touchEndX = [];
+	touchEndY = [];
+
 	building_1.src = "./Images/Sprites/building_new_1.png";
 	building_2.src = "./Images/Sprites/building_new_2.png";
 	building_3.src = "./Images/Sprites/building_new_3.png";
@@ -237,9 +244,6 @@ function handleTouchmoveEvent(e){
 
 function handleTouchendEvent(e){
 	console.log("Touch end");
-
-    var touchEndX;
-    var touchEndY;
 
 	screenDown = false;
     touchEndX = e.changedTouches[0].pageX;
