@@ -17,9 +17,9 @@
 		</div>
 		<div id = "gui">
 			<div id = "leftbar">
-				<div id = "bankicon" class = "baricons"></div>
-				<div id = "hammericon" class = "baricons"></div>
-				<div id = "qrcodeicon" class = "baricons"></div>
+				<div id = "bankicon" class = "baricons" value = 'bank'></div>
+				<div id = "hammericon" class = "baricons" value = 'hammer'></div>
+				<div id = "qrcodeicon" class = "baricons"  value = 'qrcode'></div>
 			</div>
 			<div id = "coinbar">
 				<div id = "coins">
@@ -83,6 +83,13 @@ var gameBuilding_C;
 var gameBuilding_D;
 var gameBuilding_bank;
 	
+/**
+*	Buttons
+**/
+var	settingsButton;
+var	bankButton;
+var	buildButton;
+var	qrcodeButton;
 	
 /**
 *	Intervals
@@ -113,6 +120,7 @@ window.onload = onAllAssetsLoaded;
 
 function onAllAssetsLoaded(){
 	document.addEventListener("deviceready", onDeviceReady, false);
+
 	onDeviceReady(); // This is for web testing
 }
 
@@ -121,10 +129,33 @@ function onDeviceReady(){
 	gui = document.getElementById("gui");
     mctx = maincanvas.getContext("2d");
 	
+		
+	settingsButton = document.getElementById('settings');
+	bankButton = document.getElementById('bankicon');
+	buildButton = document.getElementById('hammericon');
+	qrcodeButton = document.getElementById('qrcodeicon');
+	
+	
+	settingsButton.addEventListener('click', function(){
+		settingsPress();
+	});
+	
+	bankButton.addEventListener('click', function(){
+		bankPress();
+	});
+	
+	buildButton.addEventListener('click', function(){
+		buildPress();
+	});
+	
+	qrcodeButton.addEventListener('click', function(){
+		qrcodePress();
+	});
+	/*
 	gui.addEventListener("touchstart", handleTouchstartEvent, false);
 	gui.addEventListener("touchend", handleTouchendEvent, false);
     gui.addEventListener("touchmove", handleTouchmoveEvent, false);
-	
+	*/
 	gameSetup();
 }
 
@@ -150,6 +181,8 @@ function initialise(){
 	building_4.src = "./Images/Sprites/building_new_4.png";
 	building_bank.src = "./Images/Sprites/building_bank.png";
 	background.src = "./Images/Backgrounds/background.png";
+	
+
 }
 
 function resizeWindow(){
@@ -252,6 +285,27 @@ function update(){
 }
 
 /**
+*	Buttons & Menus
+**/
+
+function settingsPress(){
+	console.log("settings");
+}
+
+function bankPress(){
+	console.log("bank");
+}
+
+function buildPress(){
+	console.log("build");
+}
+
+function qrcodePress(){
+	console.log("qrcode");
+}
+
+
+/**
 *	Touch
 **/
 
@@ -286,11 +340,11 @@ function handleTouchendEvent(e){
 			var moveAmount;
 			if(touchStartX > touchEndX){ 											// horizontal swipe to right
 				moveAmount = touchStartX-touchEndX;
+				moveAmount = moveAmount*-1;
 				console.log("Swipe to right");
 			}
 			else{																	// horizontal swipe to left
 				moveAmount = touchEndX-touchStartX;
-				moveAmount = moveAmount*-1;
 				console.log("Swipe to left");
 			}
 			horizontalSwipe(moveAmount);
