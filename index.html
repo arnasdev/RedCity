@@ -202,7 +202,11 @@ function roundSetup(){
 
 function renderBackground(){
 	mctx.clearRect(0, 0, maincanvas.width, maincanvas.height);
-	gameBackground.draw();
+	
+	for(i = 0; i < backgrounds.length; i++){
+		backgrounds[i].draw();
+	}
+	
 	for(i = 0; i < sprites.length; i++){
 		sprites[i].draw();
 	}
