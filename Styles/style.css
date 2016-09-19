@@ -40,7 +40,6 @@ z-index: 1;
 
 #settings
 {
-	background-color: yellow;
 	position: absolute;
 	width: 75px;
 	height: 75px;
@@ -70,12 +69,20 @@ z-index: 1;
 	
 }
 
+#coinicon{
+	position: absolute;
+	width: 75px;
+	height: 75px;
+	top: -15px;
+	background-image: url("../Images/GUI/coinicon.png")
+}
+
 #leftbar
 {
-	background-color: yellow;
+	/*background-color: yellow;*/
 	position: absolute;
 	width: 10%;
-	height: 50%;
+	height: 70%;
 	left: 2%;
 	top: 25%;
 }
@@ -87,7 +94,7 @@ z-index: 1;
 	background-image: url("../Images/GUI/bankicon.png");
 	width: 130px;
 	height: 140px;
-	top: 0%;
+	top: 0px;
 
 }
 
