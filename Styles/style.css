@@ -68,14 +68,14 @@ z-index: 1;
 
 .shine
 {
-	background-color: white;
+	background-color: red;
 	position: absolute;
 	width: calc(100% - 10px);
 	left: 8px;
 	height: 55%;
 	top: 3px;
 	border-radius: 10px;
-	opacity: .8;
+	opacity: .3;
 
 }
 
@@ -95,16 +95,27 @@ z-index: 1;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-		border: 3px solid black;
+	border: 3px solid black;
 	border-radius: 20px;
+}
+
+#coinnumber
+{
+	font-size: 2.5em;
+	margin-left: 35%;
+	font-family: 'Oxygen', sans-serif;
+	top: -5px;
+	position: absolute;
+	letter-spacing: 4px;
+	text-shadow: 2px 2px #444444;
 }
 
 #coinicon{
 	position: absolute;
-	width: 40px;
-	height: 40px;
-	top: 3px;
-	right: 0px;
+	width: 50px;
+	height: 50px;
+	top: -3px;
+	right: -10px;
 	background-image: url("../Images/GUI/coinicon.png")
 }
 
@@ -140,6 +151,7 @@ z-index: 1;
 	width: 89px;
 	height: 140px;
 	top: 33%;
+	left: 0px;
 }
 
 #qrcodeicon
