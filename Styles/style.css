@@ -53,9 +53,9 @@ z-index: 1;
 {
 	background-color: yellow;
 	position: absolute;
-	width: 500px;
+	width: 60%;
 	height: 40px;
-	left: calc(20% - 250px);
+	left: 5%;
 	top: 20px;
 }
 
@@ -63,9 +63,9 @@ z-index: 1;
 {
 	background-color: yellow;
 	position: absolute;
-	width: 128px;
-	height: 128px;
-	right: 80px;
+	width: 20%;
+	height: 40px;
+	right: 5%;
 	top: 20px;
 	
 }
