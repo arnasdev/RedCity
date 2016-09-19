@@ -42,11 +42,11 @@ z-index: 1;
 {
 	background-color: yellow;
 	position: absolute;
-	width: 128px;
-	height: 128px;
+	width: 75px;
+	height: 75px;
 	background-image: url("../Images/GUI/settings.png");
-	right: 0px;
-	bottom: 0px;
+	right: 2%;
+	bottom: 2%;
 }
 
 #timeline
@@ -68,4 +68,43 @@ z-index: 1;
 	right: 2%;
 	top: 20px;
 	
+}
+
+#leftbar
+{
+	background-color: yellow;
+	position: absolute;
+	width: 10%;
+	height: 50%;
+	left: 2%;
+	top: 25%;
+}
+
+#bankicon
+{
+	
+	position: absolute;
+	background-image: url("../Images/GUI/bankicon.png");
+	width: 130px;
+	height: 140px;
+	top: 0%;
+
+}
+
+#hammericon
+{
+	position: absolute;
+	background-image: url("../Images/GUI/hammericon.png");
+	width: 130px;
+	height: 140px;
+	top: 33%;
+}
+
+#qrcodeicon
+{
+	position: absolute;
+	background-image: url("../Images/GUI/qrcodeicon.png");
+	width: 130px;
+	height: 140px;
+	top: 66%;
 }
