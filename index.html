@@ -82,7 +82,7 @@ function fadeIn(element){
 	var op = 0.1; // initial opacity
 	
 	var timer = setInterval(function () {
-        if (op >= 0.1){
+        if (op >= 1){
             clearInterval(timer);
         }
 		
@@ -112,7 +112,7 @@ function fadeOut(element){
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
-    }, 50);
+    }, 10);
 }
 
 /*
@@ -127,13 +127,13 @@ function bankPress(){
 function toggleBankTab(){
 	if(bankToggled == false){
 		//bankMenu.style.opacity = 1;
-		fadeIn(bankMenu);
 		bankToggled = true;
+		fadeIn(bankMenu);
 	}
 	else{
 		//bankMenu.style.opacity = 0;
-		fadeOut(bankMenu);
 		bankToggled = false;
+		fadeOut(bankMenu);
 	}
 	
 }
@@ -166,12 +166,14 @@ function buildPress(){
 
 function toggleBuildTab(){
 	if(buildToggled == false){
-		buildMenu.style.opacity = 1;
+		//buildMenu.style.opacity = 1;
 		buildToggled = true;
+		fadeIn(buildMenu);
 	}
 	else{
-		buildMenu.style.opacity = 0;
+		//buildMenu.style.opacity = 0;
 		buildToggled = false;
+		fadeOut(buildMenu);
 	}
 }
 
@@ -202,12 +204,15 @@ function qrcodePress(){
 
 function toggleQRTab(){
 	if(qrcodeToggled == false){
-		qrcodeMenu.style.opacity = 1;
+		//qrcodeMenu.style.opacity = 1;
 		qrcodeToggled = true;
+		fadeIn(qrcodeMenu);
+		
 	}
 	else{
-		qrcodeMenu.style.opacity = 0;
+		//qrcodeMenu.style.opacity = 0;
 		qrcodeToggled = false;
+		fadeOut(qrcodeMenu);
 	}
 }
 
@@ -238,12 +243,14 @@ function settingsPress(){
 
 function toggleSettingsTab(){
 	if(settingsToggled == false){
-		settingsMenu.style.opacity = 1;
+		//settingsMenu.style.opacity = 1;
 		settingsToggled = true;
+		fadeIn(settingsMenu);
 	}
 	else{
-		settingsMenu.style.opacity = 0;
+		//settingsMenu.style.opacity = 0;
 		settingsToggled = false;
+		fadeOut(settingsMenu);
 	}
 }
 
