@@ -441,6 +441,7 @@ function initialise(){
 	bankTimerWidth = 100;
 	canCollectCoins = true;
 	coinNumber = 500;
+	oldCoinValue = 0;
 
 }
 
@@ -554,7 +555,8 @@ function updateBank(){
 			console.log('coin load finished');
 		}
 		else{
-			bankTimerWidth = bankTimerWidth + 0.1;
+			bankTimerWidth = bankTimerWidth + 0.001;
+			// every .01 seconds we get 0.001/100 progress
 			bankTimer.style.width = bankTimerWidth+'%';
 		}
 		var newBankWidth = bankTimerWidth + 1;
@@ -570,7 +572,6 @@ function getCoins(){
 	if(canCollectCoins == true){
 		var oldCoins = coinNumber;
 		coinNumber = oldCoins + 300;
-		coinNumberDiv.innerHTML = coinNumber;
 		bankTimerWidth = 0;
 		bankTimer.style.width = '1%';
 		canCollectCoins = false;
