@@ -173,9 +173,9 @@ z-index: 1;
 #bankMenu, #buildMenu, #qrcodeMenu, #settingsMenu
 {
 	position: absolute;
-	left: 12%;
-	top: 5%;
-	width: 83%;
+	left: 2%;
+	top: 2%;
+	width: 96%;
 	height: 80%;
 	background-color: gray;
 	opacity: 0;
