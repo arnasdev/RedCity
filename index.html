@@ -79,8 +79,9 @@ var qrcodeToggled = false;
 
 function fadeIn(element){
 	element.style.display = 'block';
-	 var op = 0.1; // initial opacity
-	 var timer = setInterval(function () {
+	var op = 0.1; // initial opacity
+	
+	var timer = setInterval(function () {
         if (op >= 0.1){
             clearInterval(timer);
         }
@@ -102,6 +103,7 @@ function fadeOut(element){
 		element.style.opacity = i;
 	}*/
 	var op = 1;  // initial opacity
+	
 	var timer = setInterval(function () {
         if (op <= 0.1){
             clearInterval(timer);
