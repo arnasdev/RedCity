@@ -382,7 +382,7 @@ function onDeviceReady(){
 	buildButton.addEventListener("touchstart", buildPress, false);
 	qrcodeButton.addEventListener("touchstart", qrcodePress, false);
 	
-	collectCoins.addEventListener("touchstart", collectCoins, false);
+	collectCoins.addEventListener("touchstart", getCoins, false);
 	
 	/*
 	addEventListener(document, "touchstart", function(e) {
@@ -439,7 +439,7 @@ function initialise(){
 	
 	bankTimer.style.width = '100%';
 	bankTimerWidth = 100;
-	canCollectCoins = false;
+	canCollectCoins = true;
 	coinNumber = 500;
 
 }
@@ -560,7 +560,7 @@ function updateBank(){
 	}
 }
 
-function collectCoins(){
+function getCoins(){
 	if(canCollectCoins == true){
 		coinNumber.innerHTML += 300;
 		bankTimerWidth = 0;
