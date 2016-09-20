@@ -23,7 +23,7 @@
 			</div>
 			<div id = "coinbar">
 				<div id = "coins">
-					<div id = "coinnumber">15</div>
+					<div id = "coinnumber"></div>
 				</div>
 				<div class = "shine"></div>
 				<div id = "coinicon"></div>
@@ -36,16 +36,16 @@
 	
 			</div>
 			
-			<div id = 'bankMenu'>
+			<div id = 'bankMenu' style = "z-index: 2">
 				bank stuff
 			</div>
-			<div id = 'buildMenu'>
+			<div id = 'buildMenu' style = "z-index: 2">
 				build stuff
 			</div>
-			<div id = 'qrcodeMenu'>
+			<div id = 'qrcodeMenu' style = "z-index: 2">
 				qrcode stuff
 			</div>
-			<div id = 'settingsMenu'>
+			<div id = 'settingsMenu' style = "z-index: 2">
 				settings stuff
 			</div>
 		</div>
@@ -71,37 +71,72 @@ var bankToggled = false;
 var buildToggled = false;
 var qrcodeToggled = false;
 
-function settingsPress(){
-	untoggleForSettings();
-	toggleSettingsTab();
+
+
+/*
+*	Fade functions
+*/
+
+function fadeIn(element){
+	for(i = 0; i < 1; i = i + 0.1){
+		element.style.opacity = i;
+	}
 }
+
+function fadeOut(element){
+	for(i = 1; i > 0; i = i - 0.1){
+		element.style.opacity = i;
+	}
+}
+
+/*
+*	Bank button
+*/
 
 function bankPress(){
 	untoggleForBank();
 	toggleBankTab();
 }
 
+function toggleBankTab(){
+	if(bankToggled == false){
+		//bankMenu.style.opacity = 1;
+		fadeIn(bankMenu);
+		bankToggled = true;
+	}
+	else{
+		//bankMenu.style.opacity = 0;
+		fadeOut(bankMenu);
+		bankToggled = false;
+	}
+	
+}
+
+function untoggleForBank(){
+	console.log('untoggling');
+	if(settingsToggled == true){
+		console.log("toggled settings");
+		toggleSettingsTab();
+	}
+	if(buildToggled == true){
+		console.log("toggled build");
+		toggleBuildTab();
+	}
+	if(qrcodeToggled == true){
+		console.log("toggled qr");
+		toggleQRTab();
+	}
+}
+
+/*
+*	Build button
+*/
+
 function buildPress(){
 	untoggleForBuild();
 	toggleBuildTab();
 }
 
-function qrcodePress(){
-	untoggleForQR();
-	toggleQRTab();
-}
-
-function toggleBankTab(){
-	if(bankToggled == false){
-		bankMenu.style.opacity = 1;
-		bankToggled = true;
-	}
-	else{
-		bankMenu.style.opacity = 0;
-		bankToggled = false;
-	}
-	
-}
 
 function toggleBuildTab(){
 	if(buildToggled == false){
@@ -112,6 +147,31 @@ function toggleBuildTab(){
 		buildMenu.style.opacity = 0;
 		buildToggled = false;
 	}
+}
+
+function untoggleForBuild(){
+	console.log('untoggling');
+	if(settingsToggled == true){
+		console.log("toggled settings");
+		toggleSettingsTab();
+	}
+	if(bankToggled == true){
+		console.log("toggled bank");
+		toggleBankTab();
+	}
+	if(qrcodeToggled == true){
+		console.log("toggled qr");
+		toggleQRTab();
+	}
+}
+
+/*
+*	QR button
+*/
+
+function qrcodePress(){
+	untoggleForQR();
+	toggleQRTab();
 }
 
 function toggleQRTab(){
@@ -141,6 +201,14 @@ function untoggleForQR(){
 	}
 }
 
+/*
+*	Settings button
+*/
+
+function settingsPress(){
+	untoggleForSettings();
+	toggleSettingsTab();
+}
 
 function toggleSettingsTab(){
 	if(settingsToggled == false){
@@ -195,6 +263,9 @@ var touchStartX;
 var touchStartY;
 var touchEndX;
 var touchEndY;
+
+var coinNumber;
+var oldCoinValue;
 	
 /**
 *	Objects
@@ -207,12 +278,14 @@ var gameBuilding_D;
 var gameBuilding_bank;
 	
 /**
-*	Buttons
+*	Buttons & GUI
 **/
+
 var	settingsButton;
 var	bankButton;
 var	buildButton;
 var	qrcodeButton;
+var coinNumberDiv;
 	
 /**
 *	Intervals
@@ -257,6 +330,7 @@ function onDeviceReady(){
 	bankButton = document.getElementById('bankicon');
 	buildButton = document.getElementById('hammericon');
 	qrcodeButton = document.getElementById('qrcodeicon');
+	coinNumberDiv = document.getElementById('coinnumber');
 	
 	settings.addEventListener("touchstart", settingsPress, false);
 	bankButton.addEventListener("touchstart", bankPress, false);
@@ -308,7 +382,7 @@ function initialise(){
 	touchStartY = [];
 	touchEndX = [];
 	touchEndY = [];
-
+	
 	building_1.src = "./Images/Sprites/building_new_1.png";
 	building_2.src = "./Images/Sprites/building_new_2.png";
 	building_3.src = "./Images/Sprites/building_new_3.png";
@@ -316,6 +390,7 @@ function initialise(){
 	building_bank.src = "./Images/Sprites/building_bank.png";
 	background.src = "./Images/Backgrounds/background.png";
 	
+	coinNumber = 500;
 
 }
 
@@ -406,7 +481,7 @@ function renderBackground(){
 	mctx.clearRect(0, 0, maincanvas.width, maincanvas.height);
 	
 	for(i = 0; i < backgrounds.length; i++){
-		//backgrounds[i].draw();
+		backgrounds[i].draw();
 	}
 	
 	for(i = 0; i < sprites.length; i++){
@@ -414,8 +489,16 @@ function renderBackground(){
 	}
 }
 
+function updateGUI(){
+	oldCoinValue = coinNumberDiv.innerHTML;
+	if(oldCoinValue != coinNumber){
+		coinNumberDiv.innerHTML = coinNumber;
+	}
+}
+
 function update(){
 	renderBackground();
+	updateGUI();
 }
 
 
