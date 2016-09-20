@@ -7,15 +7,18 @@
 		<link rel="stylesheet" type="text/css" href="Styles/style.css">
 		<!--<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">-->
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script src="barcodescanner.js"></script> 
 	</head>
 
 	<body>
+		
 		<div id = "gamearea">
 			<canvas id = "mcanvas" style = "z-index: 1">
 				Your browser does not support the HTML5 'Canvas' tag.
 			</canvas>
 		</div>
 		<div id = "gui">
+			<button id = "scanButton" onclick="scanQR();">Scan QR Code</button>
 			<div id = "leftbar">
 				<div id = "bankicon" class = "baricons" value = 'bank'></div>
 				<div id = "hammericon" class = "baricons" value = 'hammer'></div>
@@ -57,6 +60,48 @@
 
 <script src = "./Objects/objects.js"></script>
 <script>
+/**
+*	QR Reader
+**/
+
+function scanQR()
+{
+    var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+    scanner.scan(
+            function (result)
+            {
+				/*
+                hideAllPages();
+                if (result.text == "page2")
+                {
+                    document.getElementById('page2').style.visibility = 'visible';
+                    window.location.hash = "#page2";
+                }
+                else if (result.text == "page3")
+                {
+                    document.getElementById('page3').style.visibility = 'visible';
+                    window.location.hash = "#page3";
+                }
+                else if (result.text == "page4")
+                {
+                    document.getElementById('page4').style.visibility = 'visible';
+                    window.location.hash = "#page4";
+                }
+                else
+                {
+                    alert("Not a valid QR Code for this application");
+                }
+				*/
+				alert("success");
+            },
+            function (error)
+            {
+                alert("Scanning failed: " + error);
+            }
+    );
+}
+;
+
 /**
 *	JS GUI
 **/
