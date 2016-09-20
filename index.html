@@ -263,7 +263,14 @@ function onDeviceReady(){
 	buildButton.addEventListener("touchstart", buildPress, false);
 	qrcodeButton.addEventListener("touchstart", qrcodePress, false);
 	
-	/*settings.addEventListener('touchstart', function(){
+	/*
+	addEventListener(document, "touchstart", function(e) {
+		console.log(e.defaultPrevented);  // will be false
+		e.preventDefault();   // does nothing since the listener is passive
+		console.log(e.defaultPrevented);  // still false
+	}, Modernizr.passiveeventlisteners ? {passive: true} : false);
+	
+	settings.addEventListener('touchstart', function(){
 		settingsPress();
 	});*/
 	
@@ -362,10 +369,10 @@ function generateWorld(){
 	gameBackgroundB = new Background();
 	
 	gameBackground.init(background, 0, 0, screenWidth, screenHeight);
-	gameBackgroundB.init(background, screenWidth, 0, screenWidth, screenHeight);
+	//gameBackgroundB.init(background, screenWidth, 0, screenWidth, screenHeight);
 	
 	backgrounds.push(gameBackground);
-	backgrounds.push(gameBackgroundB);
+	//backgrounds.push(gameBackgroundB);
 	
 	/*
 	var building1 =	new Building();
@@ -399,7 +406,7 @@ function renderBackground(){
 	mctx.clearRect(0, 0, maincanvas.width, maincanvas.height);
 	
 	for(i = 0; i < backgrounds.length; i++){
-		backgrounds[i].draw();
+		//backgrounds[i].draw();
 	}
 	
 	for(i = 0; i < sprites.length; i++){

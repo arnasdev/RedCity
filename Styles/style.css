@@ -109,6 +109,7 @@ z-index: 1;
 	position: absolute;
 	/*letter-spacing: 2px;
 	text-shadow: 2px 2px #444444;*/
+	z-index: 1;
 }
 
 #coinicon{
