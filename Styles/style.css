@@ -84,7 +84,7 @@ z-index: 1;
 	position: absolute;
 	width: 25%;
 	height: 40px;
-	right: 8%;
+	right: 4%;
 	top: 20px;
 	max-width: 200px;
 	border-radius: 20px;
@@ -106,7 +106,7 @@ z-index: 1;
 	margin-left: 35%;
 	/*font-family: 'Oxygen', sans-serif;*/
 	top: -3px;
-	left: -40px;
+	left: -55px;
 	position: absolute;
 	/*letter-spacing: 2px;
 	text-shadow: 2px 2px #444444;*/
