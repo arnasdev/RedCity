@@ -158,12 +158,12 @@ var qrcodeToggled = false;
 *	Slide functions
 */
 
-function openNav() {
-    document.getElementById("buildMenu").style.width = "96%";
+function openNav(element) {
+    document.getElementById(element).style.width = "96%";
 }
 
-function closeNav() {
-    document.getElementById("buildMenu").style.width = "0";
+function closeNav(element) {
+    document.getElementById(element).style.width = "0";
 }
 
 /*
@@ -221,12 +221,12 @@ function toggleBankTab(){
 	if(bankToggled == false){
 		//bankMenu.style.opacity = 1;
 		bankToggled = true;
-		fadeIn(bankMenu);
+		openNav(bankMenu);
 	}
 	else{
 		//bankMenu.style.opacity = 0;
 		bankToggled = false;
-		fadeOut(bankMenu);
+		closeNav(bankMenu);
 	}
 	
 }
@@ -262,13 +262,13 @@ function toggleBuildTab(){
 		//buildMenu.style.opacity = 1;
 		buildToggled = true;
 		//fadeIn(buildMenu);
-		openNav();
+		openNav(buildMenu);
 	}
 	else{
 		//buildMenu.style.opacity = 0;
 		buildToggled = false;
 		//fadeOut(buildMenu);
-		closeNav();
+		closeNav(buildMenu);
 	}
 }
 
@@ -301,13 +301,13 @@ function toggleQRTab(){
 	if(qrcodeToggled == false){
 		//qrcodeMenu.style.opacity = 1;
 		qrcodeToggled = true;
-		fadeIn(qrcodeMenu);
+		openNav(qrcodeMenu);
 		
 	}
 	else{
 		//qrcodeMenu.style.opacity = 0;
 		qrcodeToggled = false;
-		fadeOut(qrcodeMenu);
+		closeNav(qrcodeMenu);
 	}
 }
 
@@ -340,12 +340,12 @@ function toggleSettingsTab(){
 	if(settingsToggled == false){
 		//settingsMenu.style.opacity = 1;
 		settingsToggled = true;
-		fadeIn(settingsMenu);
+		openNav(settingsMenu);
 	}
 	else{
 		//settingsMenu.style.opacity = 0;
 		settingsToggled = false;
-		fadeOut(settingsMenu);
+		closeNav(settingsMenu);
 	}
 }
 
