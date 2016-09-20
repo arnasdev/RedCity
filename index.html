@@ -91,7 +91,7 @@ function scanQR()
                     alert("Not a valid QR Code for this application");
                 }
 				*/
-				alert("success");
+				addCoins(300);
             },
             function (error)
             {
@@ -556,9 +556,10 @@ function generateWorld(){
 	sprites.push(building2);
 	*/
 	
-	var building1 = createBuilding(building_1, 20, 40);
-	var building2 = createBuilding(building_1, 80, 40);
-	var building3 = createBuilding(building_1, 140, 40);
+	//building creation
+	//var building1 = createBuilding(building_1, 20, 40);
+	//var building2 = createBuilding(building_1, 80, 40);
+	//var building3 = createBuilding(building_1, 140, 40);
 }
 
 function createBuilding(img, x, y){
@@ -611,15 +612,19 @@ function updateBank(){
 	}
 }
 
+function addCoins(amount){
+	var oldCoins = coinNumber;
+	coinNumber = oldCoins + amount;
+}
+
 function getCoins(){
 	console.log('getting coins');
 	if(canCollectCoins == true){
-		var oldCoins = coinNumber;
-		coinNumber = oldCoins + 300;
+		addCoins(300);
 		bankTimerWidth = 0;
 		bankTimer.style.width = '1%';
 		canCollectCoins = false;
-		collectCoins.style.opacity = 0.8;
+		collectCoins.style.opacity = 0.4;
 	}
 	else{
 		
