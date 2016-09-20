@@ -551,6 +551,7 @@ function updateBank(){
 		if(bankTimer.style.width == '100%'){
 			collectCoins.style.opacity = 1;
 			canCollectCoins = true;
+			console.log('coin load finished');
 		}
 		var newBankWidth = bankTimerWidth + 1;
 		bankTimer.style.width = newBankWidth+'%';
@@ -561,11 +562,13 @@ function updateBank(){
 }
 
 function getCoins(){
+	console.log('getting coins');
 	if(canCollectCoins == true){
 		coinNumber.innerHTML += 300;
 		bankTimerWidth = 0;
 		bankTimer.style.width = bankTimerWidth+'%';
 		canCollectCoins = false;
+		collectCoins.style.opacity = 0;
 	}
 	else{
 		
