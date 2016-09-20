@@ -37,7 +37,10 @@
 			</div>
 			
 			<div id = 'bankMenu' style = "z-index: 2">
-				bank stuff
+				<div id = 'coinCollectAmount'>300<div id = "coinicon"></div></div>
+				<div id = 'bankTimerContainer'><div id = 'bankTimer'></div></div>
+				<div id = 'bankInfo'>Ready!</div>
+				<div id = 'collectCoins'>Collect</div>
 			</div>
 			<div id = 'buildMenu' style = "z-index: 2">
 				build stuff
@@ -46,7 +49,7 @@
 				qrcode stuff
 			</div>
 			<div id = 'settingsMenu' style = "z-index: 2">
-				settings stuff
+				<div class = "center">Main Menu</div>
 			</div>
 		</div>
 	</body>
@@ -89,7 +92,7 @@ function fadeIn(element){
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op += op * 0.1;
-    }, 10);
+    }, 5);
 	
 	/*
 	for(i = 0; i < 1; i = i + 0.1){
@@ -112,7 +115,7 @@ function fadeOut(element){
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
-    }, 10);
+    }, 5);
 }
 
 /*
@@ -319,6 +322,11 @@ var	bankButton;
 var	buildButton;
 var	qrcodeButton;
 var coinNumberDiv;
+
+var bankTimer;
+var bankTimerWidth;
+var collectCoins;
+var canCollectCoins;
 	
 /**
 *	Intervals
@@ -365,10 +373,15 @@ function onDeviceReady(){
 	qrcodeButton = document.getElementById('qrcodeicon');
 	coinNumberDiv = document.getElementById('coinnumber');
 	
+	bankTimer = document.getElementById('bankTimer');
+	collectCoins = document.getElementById('collectCoins');
+	
 	settings.addEventListener("touchstart", settingsPress, false);
 	bankButton.addEventListener("touchstart", bankPress, false);
 	buildButton.addEventListener("touchstart", buildPress, false);
 	qrcodeButton.addEventListener("touchstart", qrcodePress, false);
+	
+	collectCoins.addEventListener("touchstart", collectCoins, false);
 	
 	/*
 	addEventListener(document, "touchstart", function(e) {
@@ -423,6 +436,9 @@ function initialise(){
 	building_bank.src = "./Images/Sprites/building_bank.png";
 	background.src = "./Images/Backgrounds/background.png";
 	
+	bankTimer.style.width = '100%';
+	bankTimerWidth = 100;
+	canCollectCoins = false;
 	coinNumber = 500;
 
 }
@@ -529,9 +545,37 @@ function updateGUI(){
 	}
 }
 
+function updateBank(){
+	if(canCollectCoins == false){
+		if(bankTimer.style.width == '100%'){
+			collectCoins.style.opacity = 1;
+			canCollectCoins = true;
+		}
+		var newBankWidth = bankTimerWidth + 1;
+		bankTimer.style.width = newBankWidth+'%';
+	}
+	else{
+		
+	}
+}
+
+function collectCoins(){
+	if(canCollectCoins == true){
+		coinNumber.innerHTML += 300;
+		bankTimerWidth = 0;
+		bankTimer.style.width = bankTimerWidth+'%';
+		canCollectCoins = false;
+	}
+	else{
+		
+	}
+	
+}
+
 function update(){
-	renderBackground();
+	updateBank();
 	updateGUI();
+	renderBackground();
 }
 
 
