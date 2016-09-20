@@ -564,9 +564,9 @@ function updateBank(){
 function getCoins(){
 	console.log('getting coins');
 	if(canCollectCoins == true){
-		coinNumber.innerHTML += 300;
+		coinNumberDiv.innerHTML += coinNumber+300;
 		bankTimerWidth = 0;
-		bankTimer.style.width = bankTimerWidth+'%';
+		bankTimer.style.width = '1%';
 		canCollectCoins = false;
 		collectCoins.style.opacity = 0;
 	}
