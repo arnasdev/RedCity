@@ -179,9 +179,14 @@ z-index: 1;
 	height: 80%;
 	background-color: gray;
 	opacity: 0;
-	border: 1px solid black;
 	border-radius: 15px;
 	display: none;
+}
+
+#buildMenu{
+display: block;
+opacity: 1;
+width: 0%;
 }
 
 
