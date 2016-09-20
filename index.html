@@ -553,6 +553,10 @@ function updateBank(){
 			canCollectCoins = true;
 			console.log('coin load finished');
 		}
+		else{
+			bankTimerWidth = bankTimerWidth + 0.1;
+			bankTimer.style.width = bankTimerWidth+'%';
+		}
 		var newBankWidth = bankTimerWidth + 1;
 		bankTimer.style.width = newBankWidth+'%';
 	}
@@ -564,11 +568,13 @@ function updateBank(){
 function getCoins(){
 	console.log('getting coins');
 	if(canCollectCoins == true){
-		coinNumberDiv.innerHTML += coinNumber+300;
+		var oldCoins = coinNumber;
+		coinNumber = oldCoins + 300;
+		coinNumberDiv.innerHTML = coinNumber;
 		bankTimerWidth = 0;
 		bankTimer.style.width = '1%';
 		canCollectCoins = false;
-		collectCoins.style.opacity = 0;
+		collectCoins.style.opacity = 0.8;
 	}
 	else{
 		
