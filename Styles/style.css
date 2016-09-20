@@ -51,7 +51,7 @@ z-index: 1;
 #timelinebar
 {
 	position: absolute;
-	width: 70%;
+	width: 60%;
 	height: 40px;
 	left: 2%;
 	top: 20px;
@@ -68,23 +68,23 @@ z-index: 1;
 
 .shine
 {
-	background-color: red;
+	background-color: white;
 	position: absolute;
 	width: calc(100% - 10px);
 	left: 8px;
 	height: 55%;
 	top: 3px;
 	border-radius: 10px;
-	opacity: .2;
+	opacity: .5;
 
 }
 
 #coinbar
 {
 	position: absolute;
-	width: 21%;
+	width: 25%;
 	height: 40px;
-	right: 2%;
+	right: 12%;
 	top: 20px;
 	max-width: 200px;
 	border-radius: 20px;

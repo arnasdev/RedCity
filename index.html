@@ -18,11 +18,10 @@
 			</canvas>
 		</div>
 		<div id = "gui">
-			<button id = "scanButton" onclick="scanQR();">Scan QR Code</button>
 			<div id = "leftbar">
 				<div id = "bankicon" class = "baricons" value = 'bank'></div>
 				<div id = "hammericon" class = "baricons" value = 'hammer'></div>
-				<div id = "qrcodeicon" class = "baricons"  value = 'qrcode'></div>
+				<div id = "qrcodeicon" class = "baricons"  value = 'qrcode'  onclick="scanQR();"></div>
 			</div>
 			<div id = "coinbar">
 				<div id = "coins">
@@ -425,7 +424,7 @@ function onDeviceReady(){
 	settings.addEventListener("touchstart", settingsPress, false);
 	bankButton.addEventListener("touchstart", bankPress, false);
 	buildButton.addEventListener("touchstart", buildPress, false);
-	qrcodeButton.addEventListener("touchstart", qrcodePress, false);
+	//qrcodeButton.addEventListener("touchstart", qrcodePress, false);
 	
 	collectCoins.addEventListener("touchstart", getCoins, false);
 	
