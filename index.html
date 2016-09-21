@@ -18,10 +18,14 @@
 			</canvas>
 		</div>
 		<div id = "gui">
+			<div id = 'splashscreen'>
+				<div id = 'logo'></div>
+				<div id = 'company'></div>
+			</div>
 			<div id = "leftbar">
 				<div id = "bankicon" class = "baricons" value = 'bank'></div>
 				<div id = "hammericon" class = "baricons" value = 'hammer'></div>
-				<div id = "qrcodeicon" class = "baricons"  onclick = 'scanQR() ;' value = 'qrcode'></div>
+				<div id = "qrcodeicon" class = "baricons"  onclick = 'scanQR();' value = 'qrcode'></div>
 				<div id = "settings"></div>
 				<!--scanQR()    openNav(buildMenu)-->
 			</div>
@@ -48,12 +52,12 @@
 			<div id="buildMenu" class="sidenav" style = "z-index: 2">
 			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav(buildMenu)" style = "z-index: 2">&times;</a>
 
-				<div class = "constructionicon">
+				<div id = "manufaktura" onclick = 'buyManufaktura();' class = "constructionicon">
 					<div class = "coinsformat">500<div class = 'smallcoin'></div></div>	
 					<img src="Images/Sprites/BuildMenu/1.png" class = "buildingicon">
 					<div class = "nameformat">Manufaktura</div>	
 				</div>	
-				<div class = "constructionicon">
+				<div id = "ec1" onclick = 'buyEC1();' class = "constructionicon">
 					<div class = "coinsformat">700<img src="Images/Sprites/BuildMenu/coins.png" class = "smallcoin"></div>
 					<img src="Images/Sprites/BuildMenu/2.png" class = "buildingicon">
 					<div class = "nameformat">EC1- Powerplant</div>	
@@ -97,6 +101,29 @@
 
 <script src = "./Objects/objects.js"></script>
 <script>
+
+/**
+*	Purchasing
+**/
+
+function buyManufaktura(){
+	if(coinNumber >= 500){
+		document.getElementById('manufaktura').style.display = 'none';
+		coinNumber = coinNumber-500;
+		mapStage = 1;
+	}
+}
+
+function buyEC1(){
+	if(coinNumber >= 700){
+		document.getElementById('ec1').style.display = 'none';
+		coinNumber = coinNumber-700;
+		mapStage = 2;
+	}
+	
+}
+
+
 /**
 *	QR Reader
 **/
@@ -397,6 +424,7 @@ var touchEndY;
 
 var coinNumber;
 var oldCoinValue;
+var mapStage;
 	
 /**
 *	Objects
@@ -411,6 +439,7 @@ var gameBuilding_bank;
 /**
 *	Buttons & GUI
 **/
+var splashScreen;
 
 var	settingsButton;
 var	bankButton;
@@ -440,7 +469,9 @@ var building_3 = new Image();
 var building_4 = new Image();
 var building_bank = new Image();
 
-var background = new Image();
+var background_a = new Image();
+var background_b = new Image();
+var background_c = new Image();
 
 /**
 *	Sound
@@ -452,13 +483,9 @@ window.onload = onAllAssetsLoaded;
 // On load
 
 function onAllAssetsLoaded(){
-	document.addEventListener("deviceready", onDeviceReady, false);
-
-	onDeviceReady(); // This is for web testing
-}
-
-function onDeviceReady(){
-    maincanvas = document.getElementById("mcanvas");
+	splashScreen = document.getElementById('splashscreen');
+	
+	maincanvas = document.getElementById("mcanvas");
 	gui = document.getElementById("gui");
     mctx = maincanvas.getContext("2d");
 	
@@ -475,9 +502,18 @@ function onDeviceReady(){
 	settings.addEventListener("touchstart", settingsPress, false);
 	bankButton.addEventListener("touchstart", bankPress, false);
 	buildButton.addEventListener("touchstart", buildPress, false);
+	collectCoins.addEventListener("touchstart", getCoins, false);
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
+	//onDeviceReady(); // This is for web testing
+}
+
+function onDeviceReady(){
+   
 	//qrcodeButton.addEventListener("touchstart", qrcodePress, false);
 	
-	collectCoins.addEventListener("touchstart", getCoins, false);
+	
 	
 	/*
 	addEventListener(document, "touchstart", function(e) {
@@ -506,6 +542,8 @@ function onDeviceReady(){
 	gui.addEventListener("touchend", handleTouchendEvent, false);
     gui.addEventListener("touchmove", handleTouchmoveEvent, false);
 	*/
+	
+	splashScreen.style.display = 'none';
 	gameSetup();
 }
 
@@ -530,14 +568,17 @@ function initialise(){
 	building_3.src = "./Images/Sprites/building_new_3.png";
 	building_4.src = "./Images/Sprites/building_new_4.png";
 	building_bank.src = "./Images/Sprites/building_bank.png";
-	background.src = "./Images/Backgrounds/background.png";
+	
+	background_a.src = "./Images/Backgrounds/background_a.png";
+	background_b.src = "./Images/Backgrounds/background_b.png";
+	background_c.src = "./Images/Backgrounds/background_c.png";
 	
 	bankTimer.style.width = '100%';
 	bankTimerWidth = 100;
 	canCollectCoins = true;
-	coinNumber = 500;
+	coinNumber = 600;
 	oldCoinValue = 0;
-
+	mapStage = 0;
 }
 
 function resizeWindow(){
@@ -586,14 +627,18 @@ function generateWorld(){
 	gameBuilding_bank.init(building_bank, 0, 0, 100, 100);
 	*/
 	
-	gameBackground = new Background();
-	gameBackgroundB = new Background();
+	gameBackground_a = new Background();
+	gameBackground_b = new Background();
+	gameBackground_c = new Background();
 	
-	gameBackground.init(background, 0, 0, screenWidth, screenHeight);
-	//gameBackgroundB.init(background, screenWidth, 0, screenWidth, screenHeight);
+	gameBackground_a.init(background_a, 0, 0, screenWidth, screenHeight);
+	gameBackground_b.init(background_b, 0, 0, screenWidth, screenHeight);
+	gameBackground_c.init(background_c, 0, 0, screenWidth, screenHeight);
 	
-	backgrounds.push(gameBackground);
-	//backgrounds.push(gameBackgroundB);
+	backgrounds.push(gameBackground_a);
+	backgrounds.push(gameBackground_b);
+	backgrounds.push(gameBackground_c);
+
 	
 	/*
 	var building1 =	new Building();
@@ -627,8 +672,14 @@ function roundSetup(){
 function renderBackground(){
 	mctx.clearRect(0, 0, maincanvas.width, maincanvas.height);
 	
-	for(i = 0; i < backgrounds.length; i++){
-		backgrounds[i].draw();
+	if(mapStage == 0){
+		backgrounds[0].draw();
+	}
+	else if(mapStage == 1){
+		backgrounds[1].draw();
+	}
+	else if(mapStage == 2){
+		backgrounds[2].draw();
 	}
 	
 	for(i = 0; i < sprites.length; i++){
