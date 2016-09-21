@@ -542,8 +542,6 @@ function onDeviceReady(){
 	gui.addEventListener("touchend", handleTouchendEvent, false);
     gui.addEventListener("touchmove", handleTouchmoveEvent, false);
 	*/
-	
-	splashScreen.style.display = 'none';
 	gameSetup();
 }
 
@@ -551,6 +549,7 @@ function gameSetup(){
 	initialise();
 	resizeWindow();
 	generateWorld();
+	hideSplashScreen();
 	roundSetup();
 }
 
@@ -656,6 +655,10 @@ function generateWorld(){
 	//var building1 = createBuilding(building_1, 20, 40);
 	//var building2 = createBuilding(building_1, 80, 40);
 	//var building3 = createBuilding(building_1, 140, 40);
+}
+
+function hideSplashScreen(){
+	splashScreen.style.display = 'none';
 }
 
 function createBuilding(img, x, y){

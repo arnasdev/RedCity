@@ -25,20 +25,20 @@
 	margin-left: auto;
 	margin-right: auto;
 	background-image: url('../Images/logo.png');
-margin-top: 5%;
+margin-top: 2%;
 	position: relative;
-	width: 250px;
-	height: 250px;
+	width: 100px;
+	height: 100px;
 }
 #company
 {
-	margin-top: 5%;
+	margin-top: 2%;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	background-image: url('../Images/company.png');
-	width: 180px;
-	height: 86px;
+	width: 80px;
+	height: 38px;
 }
 #mcanvas
 {
