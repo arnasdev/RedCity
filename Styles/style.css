@@ -123,14 +123,11 @@ z-index: 1;
 	padding-top: 3px;
 	background-color: #bf360c;
 	-webkit-box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.75);
--moz-box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.75);
-box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.75);
-border-top: 2px solid rgba(0, 0, 0, .9);
+	-moz-box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.75);
+	box-shadow: 0px -3px 10px 2px rgba(0,0,0,0.75);
+	border-top: 2px solid rgba(0, 0, 0, .9);
 }
 
-.baricons{
-
-}
 
 #bankicon
 {
@@ -179,10 +176,10 @@ border-top: 2px solid rgba(0, 0, 0, .9);
 {
 	position: absolute;
 	left: 2%;
-	top: 2%;
+	top: 0px;
 	width: 96%;
 	height: 80%;
-	background-color: #e64a19;
+	background-color: #bf360c;
 	opacity: 0;
 	border-radius: 15px;
 	display: block;
@@ -315,21 +312,23 @@ border-top: 2px solid rgba(0, 0, 0, .9);
 }
 
 .constructionicon{
-	border: 1px solid red;
 	float: left;
 	margin: 5px;
-	border-radius: 15px;
-    background: #ffccbc;
+	border-radius: 10px;
+    background: #fbe9e7 ;
     padding: 20px;
     height: 120px; 
 	width: 20%;
 	min-width: 100px;
 	max-width: 200px;
-	}
+	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+}
 
 .nameformat{
 	font-size: 12px;	
-	}
+}
 	
 .coinsformat{
 	font-size: 12px;

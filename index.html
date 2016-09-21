@@ -21,7 +21,7 @@
 			<div id = "leftbar">
 				<div id = "bankicon" class = "baricons" value = 'bank'></div>
 				<div id = "hammericon" class = "baricons" value = 'hammer'></div>
-				<div id = "qrcodeicon" class = "baricons"  onclick = 'openNav(buildMenu);' value = 'qrcode'></div>
+				<div id = "qrcodeicon" class = "baricons"  onclick = 'scanQR();' value = 'qrcode'></div>
 				<div id = "settings"></div>
 			</div>
 			<div id = "coinbar">
@@ -38,6 +38,7 @@
 			
 			
 			<div id = 'bankMenu' class="sidenav" style = "z-index: 2">
+				 <a href="javascript:void(0)" class="closebtn" onclick="closeNav(bankMenu)" style = "z-index: 2">&times;</a>
 				<div id = 'coinCollectAmount'>300<div id = "coinicon"></div></div>
 				<div id = 'bankTimerContainer'><div id = 'bankTimer'></div></div>
 				<div id = 'bankInfo'>Ready!</div>
@@ -86,6 +87,7 @@
 				qrcode stuff
 			</div>
 			<div id = 'settingsMenu' class="sidenav" style = "z-index: 2">
+				 <a href="javascript:void(0)" class="closebtn" onclick="closeNav(settingsMenu)" style = "z-index: 2">&times;</a>
 				<div class = "center">Main Menu</div>
 			</div>
 		</div>
