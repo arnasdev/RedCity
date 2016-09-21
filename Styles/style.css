@@ -97,9 +97,9 @@ z-index: 1;
 #coinnumber
 {
 	
-	font-size: 2.5em;
+	font-size: 2em;
 	margin-left: 35%;
-	top: -3px;
+	top: 4px;
 	left: -50px;
 	position: absolute;
 	/*letter-spacing: 2px;
@@ -341,15 +341,16 @@ box-shadow: inset 0px 0px 3px 3px rgba(0,0,0,0.75);
 	margin: 5px;
 	border-radius: 10px;
     background: #bcaaa4  ;
-    padding: 20px;
-    height: 120px; 
-	width: 150px;
+    padding-bottom: 10px;
+	padding-top:10px;
+    height: 90px; 
+	width: 140px;
 	min-width: 100px;
 	max-width: 200px;
 -webkit-box-shadow: inset 0px 0px 3px 3px rgba(0,0,0,0.75);
 -moz-box-shadow: inset 0px 0px 3px 3px rgba(0,0,0,0.75);
 box-shadow: inset 0px 0px 3px 3px rgba(0,0,0,0.75);
-margin-right: 30px;
+margin-right: 20px;
 }
 
 .nameformat{
@@ -359,8 +360,8 @@ margin-right: 30px;
 
 .buildingicon
 {
-width: 100px;
-height; 100px;
+width: 60px;
+height; 60px;
 }
 	
 .coinsformat{
