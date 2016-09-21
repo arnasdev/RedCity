@@ -549,7 +549,6 @@ function gameSetup(){
 	initialise();
 	resizeWindow();
 	generateWorld();
-	hideSplashScreen();
 	roundSetup();
 }
 
@@ -670,6 +669,7 @@ function createBuilding(img, x, y){
 
 function roundSetup(){
 	renderCanvasInterval = setInterval(update, 10);  			// game loop
+	hideSplashScreen();
 }
 
 function renderBackground(){
