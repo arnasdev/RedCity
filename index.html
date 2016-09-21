@@ -21,7 +21,7 @@
 			<div id = "leftbar">
 				<div id = "bankicon" class = "baricons" value = 'bank'></div>
 				<div id = "hammericon" class = "baricons" value = 'hammer'></div>
-				<div id = "qrcodeicon" class = "baricons"  value = 'qrcode'></div>
+				<div id = "qrcodeicon" class = "baricons"  onclick = 'openNav(buildMenu);' value = 'qrcode'></div>
 				<div id = "settings"></div>
 			</div>
 			<div id = "coinbar">
@@ -44,39 +44,39 @@
 				<div id = 'collectCoins'>Collect</div>
 			</div>
 			<div id="buildMenu" class="sidenav" style = "z-index: 2">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav(buildMenu)" style = "z-index: 2">&times;</a>
 
 				<div class = "constructionicon">
-					<div class = "coinsformat">500<img src="Images/Sprites/BuildMenu/coins.png" style="width:10px;height:10px"></div>	
+					<div class = "coinsformat">500<div class = 'smallcoin'></div></div>	
 					<img src="Images/Sprites/BuildMenu/1.png" style="width:100px;height:100px;">
 					<div class = "nameformat">Manufaktura</div>	
 				</div>	
 				<div class = "constructionicon">
-					<div class = "coinsformat">700<img src="Images/Sprites/BuildMenu/coins.png" style="width:10px;height:10px;"></div>
+					<div class = "coinsformat">700<img src="Images/Sprites/BuildMenu/coins.png" class = "smallcoin"></div>
 					<img src="Images/Sprites/BuildMenu/2.png" style="width:100px;height:100px;">
 					<div class = "nameformat">EC1- Powerplant</div>	
 					
 				</div>	
 				<div class = "constructionicon">
-					<div class = "coinsformat">1000<img src="Images/Sprites/BuildMenu/coins.png" style="width:10px;height:10px;"></div>
+					<div class = "coinsformat">1000<img src="Images/Sprites/BuildMenu/coins.png" class = "smallcoin"></div>
 					<img src="Images/Sprites/BuildMenu/3.png" style="width:100px;height:100px;">
 					<div class = "nameformat">St.Stanislaus Kostka</div>	
 					
 				</div>	
 				<div class = "constructionicon">
-					<div class = "coinsformat">1200<img src="Images/Sprites/BuildMenu/coins.png" style="width:10px;height:10px;"></div>
+					<div class = "coinsformat">1200<img src="Images/Sprites/BuildMenu/coins.png" class = "smallcoin"></div>
 					<img src="Images/Sprites/BuildMenu/4.png" style="width:100px;height:100px;">
 					<div class = "nameformat">Oskar Kon Palace</div>	
 					
 				</div>	
 				<div class = "constructionicon">
-					<div class = "coinsformat">1800<img src="Images/Sprites/BuildMenu/coins.png" style="width:10px;height:10px;"></div>
+					<div class = "coinsformat">1800<img src="Images/Sprites/BuildMenu/coins.png" class = "smallcoin"></div>
 					<img src="Images/Sprites/BuildMenu/5.png" style="width:100px;height:100px;">
 					<div class = "nameformat">Hall ower</div>	
 					
 				</div>
 				<div class = "constructionicon">
-					<div class = "coinsformat">2200<img src="Images/Sprites/BuildMenu/coins.png" style="width:10px;height:10px;"></div>
+					<div class = "coinsformat">2200<img src="Images/Sprites/BuildMenu/coins.png" class = "smallcoin"></div>
 					<img src="Images/Sprites/BuildMenu/6.png" style="width:100px;height:100px;">
 					<div class = "nameformat">University of Lodz</div>	
 					
