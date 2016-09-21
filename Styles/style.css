@@ -22,17 +22,17 @@
 
 #logo
 {
+	top: calc(50% - 100px);
 	margin-left: auto;
 	margin-right: auto;
 	background-image: url('../Images/logo.png');
-margin-top: 2%;
 	position: relative;
 	width: 100px;
 	height: 100px;
 }
 #company
 {
-	margin-top: 2%;
+	top: calc(50% - 100px + 38px);
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
