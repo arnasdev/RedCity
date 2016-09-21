@@ -183,7 +183,7 @@ z-index: 1;
 	display: none;
 }
 
-#buildMenu{
+#bankMenu, #buildMenu, #qrcodeMenu, #settingsMenu{
 display: block;
 opacity: 1;
 width: 0%;
